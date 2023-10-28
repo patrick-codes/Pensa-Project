@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_carousel_slider/flutter_custom_carousel_slider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:pensa_aamusted/constants/color_constants.dart';
+import 'package:pensa_aamusted/model/programdetail_model.dart';
 
 import '../pages/program_page.dart';
 
@@ -19,16 +21,18 @@ final _controller = PageController();
 class _MyHomePageState extends State<MyHomePage> {
   final List<Widget> _widgetOptions = [
     const MyHomePage(),
-    const ProgramPage(),
+    const MyHomePage(),
     const MyHomePage(),
     const MyHomePage(),
   ];
 
   int _selectedIndex = 0;
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    setState(
+      () {
+        _selectedIndex = index;
+      },
+    );
   }
 
   List<CarouselItem> itemList = [
@@ -77,10 +81,10 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         scrolledUnderElevation: 2,
         centerTitle: true,
-        title: const Row(
+        title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
+            const Text(
               "PENSA AAMUSTED",
               style: TextStyle(
                 fontSize: 16,
@@ -90,17 +94,22 @@ class _MyHomePageState extends State<MyHomePage> {
             // SizedBox(width: 5),
             Row(
               children: [
-                Icon(
+                const Icon(
                   Icons.notifications_active_outlined,
                   size: 30,
                 ),
-                SizedBox(width: 5),
-                CircleAvatar(
-                  foregroundColor: Colors.grey,
-                  //backgroundColor: Colors.grey,
-                  radius: 16,
-                  child: Center(
-                    child: Icon(Icons.person),
+                const SizedBox(width: 5),
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => ());
+                  },
+                  child: const CircleAvatar(
+                    foregroundColor: Colors.grey,
+                    //backgroundColor: Colors.grey,
+                    radius: 16,
+                    child: Center(
+                      child: Icon(Icons.person),
+                    ),
                   ),
                 ),
               ],
@@ -123,22 +132,22 @@ class _MyHomePageState extends State<MyHomePage> {
           color: Colors.white,
           boxShadow: [
             BoxShadow(
-              blurRadius: 20,
+              blurRadius: 15,
               color: Colors.black.withOpacity(0.1),
             ),
           ],
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 3),
           child: GNav(
             rippleColor: Colors.grey[300]!,
             hoverColor: Colors.grey[100]!,
             activeColor: Colors.yellow,
-            iconSize: 24,
+            iconSize: 22,
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
             duration: const Duration(milliseconds: 300),
             tabBackgroundColor: kPrimaryC,
-            tabBorderRadius: 10.0,
+            tabBorderRadius: 13.0,
             color: Colors.black,
             tabs: const [
               GButton(
@@ -197,6 +206,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     SizedBox(
                       height: 40,
                       child: Row(
+                        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
                             height: 30,
@@ -207,20 +217,29 @@ class _MyHomePageState extends State<MyHomePage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                "Search.......",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                  color: Colors.grey.withOpacity(0.5),
+                              SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Text(
+                                  overflow: TextOverflow.ellipsis,
+                                  "Theme: I will buid my church Exod 3:4 ...",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 10,
+                                    color: Colors.grey.withOpacity(0.5),
+                                  ),
                                 ),
                               ),
                             ],
                           ),
-                          const SizedBox(width: 220),
-                          const FaIcon(
-                            FontAwesomeIcons.microphone,
-                            size: 18,
+                          const SizedBox(width: 90),
+                          const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              FaIcon(
+                                FontAwesomeIcons.microphone,
+                                size: 18,
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -342,92 +361,209 @@ class _MyHomePageState extends State<MyHomePage> {
 
                 const SizedBox(height: 10),
                 //Upcoming Program cards
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      for (int i = 1; i < 4; i++)
-                        Container(
-                          width: 190,
-                          height: 248,
-                          margin: const EdgeInsets.only(left: 5),
-                          decoration: BoxDecoration(
-                            color: kPrimaryC,
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 6,
-                                spreadRadius: 2,
-                                color: Colors.grey.withOpacity(0.5),
+                SizedBox(
+                  height: 250,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: programDetails.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      ProgramDetail programs = programDetails[index];
+                      return GestureDetector(
+                        onTap: () {
+                          Get.to(
+                            () => ProgramPage(
+                              programDetail: programs,
+                            ),
+                          );
+                        },
+                        child: Row(
+                          children: [
+                            // for (int i = 1; i < 4; i++)
+                            Container(
+                              width: 190,
+                              height: 248,
+                              margin: const EdgeInsets.only(left: 5),
+                              decoration: BoxDecoration(
+                                color: kPrimaryC,
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 6,
+                                    spreadRadius: 2,
+                                    color: Colors.grey.withOpacity(0.5),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ClipRRect(
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(10),
-                                  topRight: Radius.circular(10),
-                                ),
-                                child: Image.asset(
-                                  "assets/images/flyers/fly1.jpg",
-                                  height: 150,
-                                  width: 200,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              const SizedBox(height: 2),
-                              const Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 5),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Mega Youth Watch Night",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600,
-                                      ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(10),
+                                      topRight: Radius.circular(10),
                                     ),
-                                    SizedBox(height: 3),
-                                    Text(
-                                      "Friday Nov. 08, 2023",
-                                      style: TextStyle(
-                                        color: Colors.white54,
-                                        fontSize: 12,
-                                      ),
+                                    child: Image.asset(
+                                      programs.imgUrl,
+                                      height: 150,
+                                      width: 200,
+                                      fit: BoxFit.cover,
                                     ),
-                                    SizedBox(height: 5),
-                                    Row(
+                                  ),
+                                  const SizedBox(height: 2),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10, horizontal: 5),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Icon(
-                                          Icons.location_pin,
-                                          color: Colors.yellow,
-                                          size: 20,
-                                        ),
-                                        SizedBox(width: 0.5),
                                         Text(
-                                          "ESA Pavilion",
-                                          style: TextStyle(
-                                            fontSize: 12,
-                                            color: Colors.white54,
-                                            fontWeight: FontWeight.bold,
+                                          programs.title,
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600,
                                           ),
+                                        ),
+                                        const SizedBox(height: 3),
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              programs.date,
+                                              style: const TextStyle(
+                                                color: Colors.white54,
+                                                fontSize: 12,
+                                              ),
+                                            ),
+                                            Text(
+                                              programs.time,
+                                              style: const TextStyle(
+                                                color: Colors.white54,
+                                                fontSize: 12,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(height: 5),
+                                        Row(
+                                          children: [
+                                            const Icon(
+                                              Icons.location_pin,
+                                              color: Colors.yellow,
+                                              size: 20,
+                                            ),
+                                            const SizedBox(width: 0.5),
+                                            Text(
+                                              programs.location,
+                                              style: const TextStyle(
+                                                fontSize: 12,
+                                                color: Colors.white54,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ],
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                    ],
+                      );
+
+                      /* Row(
+                        children: [
+                         // for (int i = 1; i < 4; i++)
+                            Container(
+                              width: 190,
+                              height: 248,
+                              margin: const EdgeInsets.only(left: 5),
+                              decoration: BoxDecoration(
+                                color: kPrimaryC,
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 6,
+                                    spreadRadius: 2,
+                                    color: Colors.grey.withOpacity(0.5),
+                                  ),
+                                ],
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(10),
+                                      topRight: Radius.circular(10),
+                                    ),
+                                    child: Image.asset(
+                                      "assets/images/flyers/fly1.jpg",
+                                      height: 150,
+                                      width: 200,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 2),
+                                  const Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 10, horizontal: 5),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Mega Youth Watch Night",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        SizedBox(height: 3),
+                                        Text(
+                                          "Friday Nov. 08, 2023",
+                                          style: TextStyle(
+                                            color: Colors.white54,
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                        SizedBox(height: 5),
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              Icons.location_pin,
+                                              color: Colors.yellow,
+                                              size: 20,
+                                            ),
+                                            SizedBox(width: 0.5),
+                                            Text(
+                                              "ESA Pavilion",
+                                              style: TextStyle(
+                                                fontSize: 12,
+                                                color: Colors.white54,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                        ],
+                      ),
+                    */
+                    },
                   ),
-                )
+                ),
               ],
             ),
           ),

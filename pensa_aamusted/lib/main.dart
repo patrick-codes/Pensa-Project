@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pensa_aamusted/authentication/controllers/splash_controller.dart';
+import 'package:pensa_aamusted/screens/intro%20screens/splash_screen.dart';
 import 'screens/home/home.dart';
 
 void main() {
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(),
+      home: SplashScreen(),
     );
   }
 }
