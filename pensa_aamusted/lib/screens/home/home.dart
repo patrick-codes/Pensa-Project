@@ -202,6 +202,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],
                     ),
                     const SizedBox(height: 10),
+            
                     //Search Bar
                     SizedBox(
                       height: 40,
