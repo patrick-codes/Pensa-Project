@@ -4,9 +4,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:marquee/marquee.dart';
 import 'package:pensa_aamusted/constants/color_constants.dart';
+import 'package:pensa_aamusted/custom%20widgets/drawer/nav_drawer.dart';
 import 'package:pensa_aamusted/model/programdetail_model.dart';
-
 import '../pages/program_page.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -27,6 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
 
   int _selectedIndex = 0;
+
   void _onItemTapped(int index) {
     setState(
       () {
@@ -78,13 +80,14 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const NavDrawer(),
       appBar: AppBar(
         scrolledUnderElevation: 2,
         centerTitle: true,
-        title: Row(
+        title: const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text(
+            Text(
               "PENSA AAMUSTED",
               style: TextStyle(
                 fontSize: 16,
@@ -94,14 +97,18 @@ class _MyHomePageState extends State<MyHomePage> {
             // SizedBox(width: 5),
             Row(
               children: [
-                const Icon(
-                  Icons.notifications_active_outlined,
-                  size: 30,
+                Badge(
+                  label: Text("4"),
+                  alignment: Alignment.topRight,
+                  child: Icon(
+                    Icons.notifications_active_outlined,
+                    size: 28,
+                  ),
                 ),
-                const SizedBox(width: 5),
-                GestureDetector(
+                SizedBox(width: 5),
+                /*GestureDetector(
                   onTap: () {
-                    Get.to(() => ());
+                    AuthenticationRepository.instance.logout();
                   },
                   child: const CircleAvatar(
                     foregroundColor: Colors.grey,
@@ -112,11 +119,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                 ),
+             */
               ],
             ),
           ],
         ),
-        leading: const Row(
+        /*leading: const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Icon(
@@ -126,6 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(width: 5),
           ],
         ),
+      */
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
@@ -192,7 +201,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          "Hello Blessing...",
+                          "Hello..Welcome!",
                         ),
                         SizedBox(width: 3),
                         FaIcon(
@@ -202,7 +211,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],
                     ),
                     const SizedBox(height: 10),
-            
+
                     //Search Bar
                     SizedBox(
                       height: 40,
@@ -222,10 +231,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                 scrollDirection: Axis.horizontal,
                                 child: Text(
                                   overflow: TextOverflow.ellipsis,
-                                  "Theme: I will buid my church Exod 3:4 ...",
+                                  "search.....",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 10,
+                                    fontSize: 20,
                                     color: Colors.grey.withOpacity(0.5),
                                   ),
                                 ),
@@ -233,7 +242,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             ],
                           ),
                           const SizedBox(width: 90),
-                          const Row(
+                          /* const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               FaIcon(
@@ -242,12 +251,34 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                             ],
                           ),
+                        */
                         ],
                       ),
                     ),
                     const SizedBox(height: 10),
                   ],
                 ),
+                //Marquee moving text
+                Container(
+                  height: 30,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(2),
+                    color: kPrimaryC,
+                  ),
+                  child: Marquee(
+                    startAfter: const Duration(seconds: 2),
+                    decelerationCurve: Curves.easeOut,
+                    accelerationCurve: Curves.linear,
+                    text:
+                        "1 John 4:7 NIV  ---  Dear friends, let us love one another, for love comes from God. Everyone who loves has been born of God and knows God.  ---  ",
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: Colors.yellow,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+
                 const SizedBox(height: 12),
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -273,7 +304,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               height: 180,
                               subHeight: 50,
                               width: MediaQuery.of(context).size.width * .95,
-                              autoplay: false,
+                              autoplay: true,
                               autoplayDuration: const Duration(seconds: 5),
                               animationDuration:
                                   const Duration(milliseconds: 500),

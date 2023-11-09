@@ -2,7 +2,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pensa_aamusted/constants/color_constants.dart';
-import '../../authentication/controllers/welcome_controller.dart';
 import 'login_screen.dart';
 import 'signup_screen.dart';
 
@@ -10,8 +9,7 @@ class WelcomeScreen extends StatelessWidget {
   WelcomeScreen({super.key});
 
   // final _splController = Get.put(SplashController());
-  final _weController = Get.put(WelcomeScreenController());
-
+  // final _weController = Get.put(WelcomeScreenController());
   @override
   Widget build(BuildContext context) {
     //_splController.splashState();
@@ -55,7 +53,7 @@ class WelcomeScreen extends StatelessWidget {
                     SizedBox(height: 5),
                     Text(
                       textAlign: TextAlign.center,
-                      "Lets put your creativity on the development highway, craft apps that everyone loves",
+                      "PENSA is a religious denomination comprising of Pentecost members and associates on campus",
                       style: TextStyle(
                         fontSize: 12,
                         color: Colors.white,

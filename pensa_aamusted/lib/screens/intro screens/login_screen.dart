@@ -4,17 +4,21 @@ import 'package:get/get.dart';
 import 'package:pensa_aamusted/constants/color_constants.dart';
 import 'package:pensa_aamusted/screens/home/home.dart';
 import 'package:text_divider/text_divider.dart';
+
 import '../../authentication/controllers/login_controller.dart';
+import '../../constants/loading_indicator.dart';
+import 'signup_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
-  final _loginController = Get.put(LoginScreenController());
+  final _loginController = Get.put(LoginController());
   bool isLoading = true;
 
   @override
   Widget build(BuildContext context) {
-    // _splController.splashState();
+    final controller = Get.put(LoginController());
+    final formKey2 = GlobalKey<FormState>();
     return Scaffold(
       //backgroundColor:  Color.fromARGB(255, 2, 1, 67),
       body: SafeArea(
@@ -30,9 +34,9 @@ class LoginScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       const Image(
-                        image: AssetImage("assets/images/logo3.png"),
-                        height: 80,
-                        width: 80,
+                        image: AssetImage("assets/images/pensa_logo.jpg"),
+                        height: 100,
+                        width: 100,
                       ),
                       const SizedBox(height: 10),
                       const Column(
@@ -64,29 +68,48 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 20),
-                      TextFormField(
-                        decoration: const InputDecoration(
-                          hintText: 'Email',
-                          hintStyle: TextStyle(fontSize: 10, color: kPrimaryC),
-                          suffixIcon: Icon(Icons.mail, color: kPrimaryC),
-                          labelText: "Email",
-                          labelStyle: TextStyle(fontSize: 15, color: kPrimaryC),
-                          enabledBorder: OutlineInputBorder(),
-                          focusedBorder: OutlineInputBorder(),
-                        ),
-                      ),
-                      const SizedBox(height: 15),
-                      TextFormField(
-                        obscureText: true,
-                        decoration: const InputDecoration(
-                          hintText: 'Password',
-                          hintStyle: TextStyle(fontSize: 10, color: kPrimaryC),
-                          suffixIcon: Icon(Icons.visibility, color: kPrimaryC),
-                          labelText: "Password",
-                          labelStyle: TextStyle(fontSize: 15, color: kPrimaryC),
-                          enabledBorder: OutlineInputBorder(),
-                          focusedBorder: OutlineInputBorder(),
-                        ),
+                      Column(
+                        children: [
+                          Form(
+                            key: formKey2,
+                            child: Column(
+                              children: [
+                                TextFormField(
+                                  controller: controller.email,
+                                  decoration: const InputDecoration(
+                                    hintText: 'Email',
+                                    hintStyle: TextStyle(
+                                        fontSize: 10, color: kPrimaryC),
+                                    suffixIcon:
+                                        Icon(Icons.mail, color: kPrimaryC),
+                                    labelText: "Email",
+                                    labelStyle: TextStyle(
+                                        fontSize: 15, color: kPrimaryC),
+                                    enabledBorder: OutlineInputBorder(),
+                                    focusedBorder: OutlineInputBorder(),
+                                  ),
+                                ),
+                                const SizedBox(height: 15),
+                                TextFormField(
+                                  controller: controller.password,
+                                  obscureText: true,
+                                  decoration: const InputDecoration(
+                                    hintText: 'Password',
+                                    hintStyle: TextStyle(
+                                        fontSize: 10, color: kPrimaryC),
+                                    suffixIcon: Icon(Icons.visibility,
+                                        color: kPrimaryC),
+                                    labelText: "Password",
+                                    labelStyle: TextStyle(
+                                        fontSize: 15, color: kPrimaryC),
+                                    enabledBorder: OutlineInputBorder(),
+                                    focusedBorder: OutlineInputBorder(),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                       const SizedBox(height: 12),
                       const Row(
@@ -104,9 +127,14 @@ class LoginScreen extends StatelessWidget {
                       const SizedBox(height: 30),
                       GestureDetector(
                         onTap: () {
-                          Get.to(
-                            () => const MyHomePage(),
-                          );
+                          if (formKey2.currentState!.validate()) {
+                            //Indicator.showLoading();
+                            LoginController.instance.loginUser(
+                              controller.email.text.trim(),
+                              controller.password.text.trim(),
+                            );
+                            //Indicator.closeLoading();
+                          }
                         },
                         child: Container(
                           height: 55,
@@ -129,24 +157,29 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 12),
-                      Center(
-                        child: RichText(
-                          text: const TextSpan(
-                            style: TextStyle(fontSize: 15),
-                            children: [
-                              TextSpan(
-                                text: "Don't have an account? ",
-                                style: TextStyle(
-                                  color: kPrimaryC,
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(() => const SignUpScreen());
+                        },
+                        child: Center(
+                          child: RichText(
+                            text: const TextSpan(
+                              style: TextStyle(fontSize: 15),
+                              children: [
+                                TextSpan(
+                                  text: "Don't have an account? ",
+                                  style: TextStyle(
+                                    color: kPrimaryC,
+                                  ),
                                 ),
-                              ),
-                              TextSpan(
-                                text: " Sign Up",
-                                style: TextStyle(
-                                  color: Colors.blue,
+                                TextSpan(
+                                  text: " Sign Up",
+                                  style: TextStyle(
+                                    color: Colors.blue,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),

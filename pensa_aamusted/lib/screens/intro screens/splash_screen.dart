@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pensa_aamusted/authentication/controllers/splash_controller.dart';
+import '../../authentication/controllers/splash_controllers.dart';
+import '../../constants/color_constants.dart';
 
 class SplashScreen extends StatelessWidget {
   SplashScreen({super.key});
@@ -11,16 +12,16 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     _splController.splashState();
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 2, 1, 67),
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Image(
-              image: AssetImage("assets/images/logo3.png"),
-              height: 150,
-              width: 150,
+              image: AssetImage("assets/images/pensa_logo.jpg"),
+              height: 200,
+              width: 200,
             ),
             const SizedBox(height: 20),
             Container(
@@ -29,7 +30,7 @@ class SplashScreen extends StatelessWidget {
                 "PENSA AAMUSTED",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: kPrimaryC,
                 ),
               ),
             ),

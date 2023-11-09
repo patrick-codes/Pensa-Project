@@ -5,15 +5,18 @@ import 'package:pensa_aamusted/authentication/controllers/signup_controller.dart
 import 'package:pensa_aamusted/screens/intro%20screens/login_screen.dart';
 import 'package:text_divider/text_divider.dart';
 import '../../constants/color_constants.dart';
+import '../../constants/loading_indicator.dart';
+import '../../model/user_model.dart';
 
 class SignUpScreen extends StatelessWidget {
-  SignUpScreen({super.key});
+  const SignUpScreen({super.key});
 
-  final _signupController = Get.put(SignUpScreenController());
+  //final _signupController = Get.put(SignUpController());
 
   @override
   Widget build(BuildContext context) {
-    // _splController.splashState();
+    final controller = Get.put(SignUpController());
+    final formKey = GlobalKey<FormState>();
     return Scaffold(
       //backgroundColor:  Color.fromARGB(255, 2, 1, 67),
       body: SafeArea(
@@ -29,9 +32,9 @@ class SignUpScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       const Image(
-                        image: AssetImage("assets/images/logo3.png"),
-                        height: 80,
-                        width: 80,
+                        image: AssetImage("assets/images/pensa_logo.jpg"),
+                        height: 100,
+                        width: 100,
                       ),
                       const SizedBox(height: 10),
                       const Column(
@@ -63,46 +66,84 @@ class SignUpScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 20),
-                      TextFormField(
-                        decoration: const InputDecoration(
-                          hintText: 'Username',
-                          hintStyle: TextStyle(fontSize: 10, color: kPrimaryC),
-                          suffixIcon: Icon(Icons.person, color: kPrimaryC),
-                          labelText: "Username",
-                          labelStyle: TextStyle(fontSize: 15, color: kPrimaryC),
-                          enabledBorder: OutlineInputBorder(),
-                          focusedBorder: OutlineInputBorder(),
-                        ),
+                      Column(
+                        children: [
+                          Form(
+                            key: formKey,
+                            child: Column(
+                              children: [
+                                TextFormField(
+                                  controller: controller.username,
+                                  decoration: const InputDecoration(
+                                    hintText: 'Username',
+                                    hintStyle: TextStyle(
+                                        fontSize: 10, color: kPrimaryC),
+                                    suffixIcon:
+                                        Icon(Icons.person, color: kPrimaryC),
+                                    labelText: "Username",
+                                    labelStyle: TextStyle(
+                                        fontSize: 15, color: kPrimaryC),
+                                    enabledBorder: OutlineInputBorder(),
+                                    focusedBorder: OutlineInputBorder(),
+                                  ),
+                                ),
+                                const SizedBox(height: 15),
+                                TextFormField(
+                                  controller: controller.email,
+                                  decoration: const InputDecoration(
+                                    hintText: 'Email',
+                                    hintStyle: TextStyle(
+                                        fontSize: 10, color: kPrimaryC),
+                                    suffixIcon:
+                                        Icon(Icons.mail, color: kPrimaryC),
+                                    labelText: "Email",
+                                    labelStyle: TextStyle(
+                                        fontSize: 15, color: kPrimaryC),
+                                    enabledBorder: OutlineInputBorder(),
+                                    focusedBorder: OutlineInputBorder(),
+                                  ),
+                                ),
+                                const SizedBox(height: 15),
+                                TextFormField(
+                                  controller: controller.password,
+                                  obscureText: true,
+                                  decoration: const InputDecoration(
+                                    hintText: 'Password',
+                                    hintStyle: TextStyle(
+                                        fontSize: 10, color: kPrimaryC),
+                                    suffixIcon: Icon(Icons.visibility,
+                                        color: kPrimaryC),
+                                    labelText: "Password",
+                                    labelStyle: TextStyle(
+                                        fontSize: 15, color: kPrimaryC),
+                                    enabledBorder: OutlineInputBorder(),
+                                    focusedBorder: OutlineInputBorder(),
+                                  ),
+                                ),
+                                const SizedBox(height: 12),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
-                      const SizedBox(height: 15),
-                      TextFormField(
-                        decoration: const InputDecoration(
-                          hintText: 'Email',
-                          hintStyle: TextStyle(fontSize: 10, color: kPrimaryC),
-                          suffixIcon: Icon(Icons.mail, color: kPrimaryC),
-                          labelText: "Email",
-                          labelStyle: TextStyle(fontSize: 15, color: kPrimaryC),
-                          enabledBorder: OutlineInputBorder(),
-                          focusedBorder: OutlineInputBorder(),
-                        ),
-                      ),
-                      const SizedBox(height: 15),
-                      TextFormField(
-                        obscureText: true,
-                        decoration: const InputDecoration(
-                          hintText: 'Password',
-                          hintStyle: TextStyle(fontSize: 10, color: kPrimaryC),
-                          suffixIcon: Icon(Icons.visibility, color: kPrimaryC),
-                          labelText: "Password",
-                          labelStyle: TextStyle(fontSize: 15, color: kPrimaryC),
-                          enabledBorder: OutlineInputBorder(),
-                          focusedBorder: OutlineInputBorder(),
-                        ),
-                      ),
-                      const SizedBox(height: 12),
                       const SizedBox(height: 30),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          if (formKey.currentState!.validate()) {
+                            Indicator.showLoading();
+                            SignUpController.instance.registerUser(
+                              controller.email.text.trim(),
+                              controller.password.text.trim(),
+                            );
+
+                            final user = UserModel(
+                              username: controller.username.text.trim(),
+                              email: controller.email.text.trim(),
+                              password: controller.password.text.trim(),
+                            );
+                            SignUpController.instance.createUser(user);
+                          }
+                        },
                         child: Container(
                           height: 55,
                           decoration: BoxDecoration(

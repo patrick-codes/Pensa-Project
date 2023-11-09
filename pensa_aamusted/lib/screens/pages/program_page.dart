@@ -186,20 +186,41 @@ class _ProgramPageState extends State<ProgramPage> {
                             ),
                             const SizedBox(height: 5),
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const Icon(
-                                  Icons.location_pin,
-                                  color: Colors.yellow,
-                                  size: 20,
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.location_pin,
+                                      color: Colors.yellow,
+                                      size: 20,
+                                    ),
+                                    const SizedBox(width: 0.5),
+                                    Text(
+                                      widget.programDetail.location,
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.white54,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                const SizedBox(width: 0.5),
-                                Text(
-                                  widget.programDetail.location,
-                                  style: const TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.white54,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                const Row(
+                                  children: [
+                                    Icon(
+                                      Icons.update,
+                                      size: 16,
+                                      color: Colors.white54,
+                                    ),
+                                    Text(
+                                      "Updated - 2 days ago",
+                                      style: TextStyle(
+                                        color: Colors.white54,
+                                        fontSize: 8,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
