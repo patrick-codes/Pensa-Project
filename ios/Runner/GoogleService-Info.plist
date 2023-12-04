@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyBXh1RWgrWqTYKoYakLCMYIPiyiYkWzlwk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>112733256758</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.pensaAamusted</string>
+	<key>PROJECT_ID</key>
+	<string>pensa-aamusted</string>
+	<key>STORAGE_BUCKET</key>
+	<string>pensa-aamusted.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:112733256758:ios:acb43d0d00758fe4112c97</string>
+</dict>
+</plist>
