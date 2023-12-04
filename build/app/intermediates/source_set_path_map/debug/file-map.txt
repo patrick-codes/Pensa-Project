@@ -1,0 +1,23 @@
+com.example.pensa_aamusted.app-jetified-play-services-auth-20.7.0-0 C:\Users\KofikTech\.gradle\caches\transforms-3\1dd93dfa68077670fe15796ffe5306f3\transformed\jetified-play-services-auth-20.7.0\res
+com.example.pensa_aamusted.app-jetified-window-1.0.0-beta04-1 C:\Users\KofikTech\.gradle\caches\transforms-3\25cee5f028ac2a6b79fd6278ff5b59e2\transformed\jetified-window-1.0.0-beta04\res
+com.example.pensa_aamusted.app-jetified-annotation-experimental-1.1.0-2 C:\Users\KofikTech\.gradle\caches\transforms-3\6c0c163cc77ae6c91f9f7dfcd179c29c\transformed\jetified-annotation-experimental-1.1.0\res
+com.example.pensa_aamusted.app-browser-1.4.0-3 C:\Users\KofikTech\.gradle\caches\transforms-3\6d3bbaf4594b8ed85e4722883be764b3\transformed\browser-1.4.0\res
+com.example.pensa_aamusted.app-jetified-firebase-common-20.3.3-4 C:\Users\KofikTech\.gradle\caches\transforms-3\6f9fa5902813f78de2aefcdfcdb180f7\transformed\jetified-firebase-common-20.3.3\res
+com.example.pensa_aamusted.app-core-1.6.0-5 C:\Users\KofikTech\.gradle\caches\transforms-3\7e9df2ac2213a6bd3cef0f2f27870d79\transformed\core-1.6.0\res
+com.example.pensa_aamusted.app-jetified-play-services-base-18.0.1-6 C:\Users\KofikTech\.gradle\caches\transforms-3\aba8f806953ea3dd8f794da3aeb78a12\transformed\jetified-play-services-base-18.0.1\res
+com.example.pensa_aamusted.app-jetified-window-java-1.0.0-beta04-7 C:\Users\KofikTech\.gradle\caches\transforms-3\ae81e06d24c799147c26814497a2a305\transformed\jetified-window-java-1.0.0-beta04\res
+com.example.pensa_aamusted.app-jetified-play-services-basement-18.2.0-8 C:\Users\KofikTech\.gradle\caches\transforms-3\f5aeeb70e4aa208ac830e747eaf33ddc\transformed\jetified-play-services-basement-18.2.0\res
+com.example.pensa_aamusted.app-debug-9 C:\Users\KofikTech\Desktop\Projects Hub New\Pensa Project\pensa_aamusted\android\app\src\debug\res
+com.example.pensa_aamusted.app-main-10 C:\Users\KofikTech\Desktop\Projects Hub New\Pensa Project\pensa_aamusted\android\app\src\main\res
+com.example.pensa_aamusted.app-pngs-11 C:\Users\KofikTech\Desktop\Projects Hub New\Pensa Project\pensa_aamusted\build\app\generated\res\pngs\debug
+com.example.pensa_aamusted.app-resValues-12 C:\Users\KofikTech\Desktop\Projects Hub New\Pensa Project\pensa_aamusted\build\app\generated\res\resValues\debug
+com.example.pensa_aamusted.app-rs-13 C:\Users\KofikTech\Desktop\Projects Hub New\Pensa Project\pensa_aamusted\build\app\generated\res\rs\debug
+com.example.pensa_aamusted.app-mergeDebugResources-14 C:\Users\KofikTech\Desktop\Projects Hub New\Pensa Project\pensa_aamusted\build\app\intermediates\incremental\debug\mergeDebugResources\merged.dir
+com.example.pensa_aamusted.app-mergeDebugResources-15 C:\Users\KofikTech\Desktop\Projects Hub New\Pensa Project\pensa_aamusted\build\app\intermediates\incremental\debug\mergeDebugResources\stripped.dir
+com.example.pensa_aamusted.app-merged_res-16 C:\Users\KofikTech\Desktop\Projects Hub New\Pensa Project\pensa_aamusted\build\app\intermediates\merged_res\debug
+com.example.pensa_aamusted.app-packaged_res-17 C:\Users\KofikTech\Desktop\Projects Hub New\Pensa Project\pensa_aamusted\build\cloud_firestore\intermediates\packaged_res\debug
+com.example.pensa_aamusted.app-packaged_res-18 C:\Users\KofikTech\Desktop\Projects Hub New\Pensa Project\pensa_aamusted\build\firebase_auth\intermediates\packaged_res\debug
+com.example.pensa_aamusted.app-packaged_res-19 C:\Users\KofikTech\Desktop\Projects Hub New\Pensa Project\pensa_aamusted\build\firebase_core\intermediates\packaged_res\debug
+com.example.pensa_aamusted.app-packaged_res-20 C:\Users\KofikTech\Desktop\Projects Hub New\Pensa Project\pensa_aamusted\build\google_sign_in_android\intermediates\packaged_res\debug
+com.example.pensa_aamusted.app-packaged_res-21 C:\Users\KofikTech\Desktop\Projects Hub New\Pensa Project\pensa_aamusted\build\path_provider_android\intermediates\packaged_res\debug
+com.example.pensa_aamusted.app-packaged_res-22 C:\Users\KofikTech\Desktop\Projects Hub New\Pensa Project\pensa_aamusted\build\shared_preferences_android\intermediates\packaged_res\debug
